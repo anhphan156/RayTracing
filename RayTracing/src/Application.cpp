@@ -18,8 +18,10 @@ Application::Application()
 
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGuiIO& io = ImGui::GetIO();
 	io.WantCaptureMouse = true;
+	ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
 	ImGui::StyleColorsDark();
 
@@ -33,6 +35,8 @@ Application::~Application()
 
 void Application::Run()
 {
+	ImGuiIO& io = ImGui::GetIO();
+
 	shared_ptr<Layer> settings = make_shared<RayTracingSettings>();
 	m_layers.push_back(settings);
 	while (glfwWindowShouldClose(m_window) == 0 && glfwGetKey(m_window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
@@ -52,8 +56,18 @@ void Application::Run()
 		glfwGetFramebufferSize(m_window, &display_w, &display_h);
 		glViewport(0, 0, display_w, display_h);
 		glClear(GL_COLOR_BUFFER_BIT);
+
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		// Update and Render additional Platform Windows
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
+			GLFWwindow* back_current_context = glfwGetCurrentContext();
+			ImGui::UpdatePlatformWindows();
+			ImGui::RenderPlatformWindowsDefault();
+			glfwMakeContextCurrent(back_current_context);
+		}
+
 		glfwSwapBuffers(m_window);
 	}
 
