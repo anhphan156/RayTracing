@@ -19,6 +19,9 @@
     <Filter Include="Vendor\ImGui">
       <UniqueIdentifier>{00f42c3d-5865-4416-b194-0f1b84d2f881}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vendor\stbi">
+      <UniqueIdentifier>{5bde9ab4-f827-4280-8038-b1cdaea7625a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -50,6 +53,15 @@
     </ClCompile>
     <ClCompile Include="vendor\imgui\imgui_impl_glfw.cpp">
       <Filter>Vendor\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\stb\stb_image.cpp">
+      <Filter>Vendor\stbi</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RayTracingSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Image.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +100,12 @@
     </ClInclude>
     <ClInclude Include="vendor\imgui\imgui_impl_glfw.h">
       <Filter>Vendor\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb\stb_image.h">
+      <Filter>Vendor\stbi</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Image.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

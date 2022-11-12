@@ -1,15 +1,11 @@
 #pragma once
 #include "Layer.h"
+#include "Common.h"
 
 class RayTracingSettings : public Layer {
 public:
 	RayTracingSettings() {}
 
-	virtual void OnUIRender() override {
-		ImGui::Begin("Settings");
+	virtual void OnUIRender() override;
 
-		ImGui::Text("Testing");
-
-		ImGui::End();
-	}
 };
